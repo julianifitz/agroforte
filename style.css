@@ -1,0 +1,62 @@
+/* Variáveis de Cor - Tema Padrão */
+:root {
+    --bg-principal: #f4f7f4;
+    --bg-card: #ffffff;
+    --texto-principal: #2c3e50;
+    --cor-primaria: #27ae60;
+    --cor-secundaria: #d35400;
+    --tamanho-fonte-base: 16px;
+}
+
+/* Classe de Alto Contraste (Ativada via JS) */
+body.alto-contraste {
+    --bg-principal: #000000;
+    --bg-card: #1c1c1c;
+    --texto-principal: #ffffff;
+    --cor-primaria: #ffff00;
+    --cor-secundaria: #00ffff;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    font-size: var(--tamanho-fonte-base);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Exemplo de Responsividade Simples */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--bg-card);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Lógica para o menu hamburguer interagir via JS */
+    }
+}
+
+/* Cards Expansíveis */
+.card-content {
+    display: none;
+    padding: 10px;
+    background-color: var(--bg-principal);
+}
+
+.card.ativo .card-content {
+    display: block;
+}
+
+.escondido {
+    display: none;
+}

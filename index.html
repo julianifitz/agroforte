@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Campo ao Copo: A Jornada do Malte em Guarapuava</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div id="barra-acessibilidade">
+            <button id="btn-aumentar" aria-label="Aumentar texto">A+</button>
+            <button id="btn-diminuir" aria-label="Diminuir texto">A-</button>
+            <button id="btn-contraste" aria-label="Alternar Alto Contraste">🌓 Alto Contraste</button>
+        </div>
+        
+        <nav class="navbar">
+            <div class="logo">🌾 Jornada do Malte</div>
+            <button class="menu-toggle" aria-label="Abrir Menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#jornada">A Jornada</a></li>
+                <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <h1>Do Campo ao Copo</h1>
+            <p>A Jornada do Malte em Guarapuava: Equilíbrio entre produção e meio ambiente.</p>
+        </section>
+
+        <section id="sustentabilidade">
+            <h2>🌿 Práticas Sustentáveis</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <button class="card-header" aria-expanded="false">💧 Uso Consciente da Água</button>
+                    <div class="card-content">
+                        <p>A tecnologia no campo permite sistemas de irrigação inteligentes que evitam o desperdício desse recurso vital.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="card-header" aria-expanded="false">🌱 Manejo Responsável do Solo</button>
+                    <div class="card-content">
+                        <p>Uso de rotação de culturas e plantio direto para preservar os nutrientes da terra de Guarapuava.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz">
+            <h2>🧠 Quiz Interativo</h2>
+            <div id="quiz-container">
+                <p id="pergunta-texto">Carregando pergunta...</p>
+                <div id="opcoes-container"></div>
+                <button id="btn-proximo" class="escondido">Próxima</button>
+                <div id="resultado-quiz" class="escondido"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Concurso Agrinho - Categoria Programação</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
