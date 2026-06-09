@@ -1,109 +1,108 @@
-// === CONTROLE DE ACESSIBILIDADE ===
-const btnContraste = document.getElementById('btn-contraste');
-const btnAumentar = document.getElementById('btn-aumentar');
-const btnDiminuir = document.getElementById('btn-diminuir');
+const menuBtn=document.getElementById('menuBtn');
+const menu=document.getElementById('menu');
+const accessBtn=document.getElementById('accessBtn');
+const accessPanel=document.getElementById('accessPanel');
+const fontPlus=document.getElementById('fontPlus');
+const fontMinus=document.getElementById('fontMinus');
+const contrastBtn=document.getElementById('contrastBtn');
+const curiosidadeBtn=document.getElementById('curiosidadeBtn');
+const curiosidadeTexto=document.getElementById('curiosidadeTexto');
+const quizBox=document.getElementById('quizBox');
+const quizBtn=document.getElementById('quizBtn');
+const quizResultado=document.getElementById('quizResultado');
+const slideImg=document.getElementById('slideImg');
+const slideCaption=document.getElementById('slideCaption');
+const prevSlide=document.getElementById('prevSlide');
+const nextSlide=document.getElementById('nextSlide');
+const toggleTexto=document.getElementById('toggleTexto');
 
-let tamanhoAtual = 16;
+let fontSize=16;
+let contrast=false;
+let slide=0;
 
-btnContraste.addEventListener('click', () => {
-    document.body.classList.toggle('alto-contraste');
-});
+const slides=[
+  {src:'img/Campo.png',cap:'Cultivo da cevada no campo.'},
+    {src:'img/Malte.png',cap:'Transformação em malte na indústria.'},
+      {src:'img/Cidade.png',cap:'Conexão entre agro e cidade.'}
+      ];
 
-btnAumentar.addEventListener('click', () => {
-    if (tamanhoAtual < 24) {
-        tamanhoAtual += 2;
-        document.documentElement.style.setProperty('--tamanho-fonte-base', `${tamanhoAtual}px`);
-    }
-});
+      const curiosidades=[
+        'A cevada é muito usada na produção de malte e de alimentos.',
+          'A sustentabilidade ajuda a produzir mais com menos impacto ambiental.',
+            'Tecnologia no campo melhora eficiência e reduz desperdícios.'
+            ];
 
-btnDiminuir.addEventListener('click', () => {
-    if (tamanhoAtual > 14) {
-        tamanhoAtual -= 2;
-        document.documentElement.style.setProperty('--tamanho-fonte-base', `${tamanhoAtual}px`);
-    }
-});
+            const quiz=[
+              {q:'A cevada faz parte de qual etapa inicial?',a:'campo',opts:['Campo','Cidade','Loja']},
+                {q:'O malte é resultado de qual processo?',a:'transformação',opts:['Transformação','Decoração','Venda']},
+                  {q:'Qual prática é importante no projeto?',a:'uso consciente da água',opts:['Uso consciente da água','Desperdício','Poluição']}
+                  ];
 
-// === CARDS EXPANSÍVEIS (SUSTENTABILIDADE) ===
-document.querySelectorAll('.card-header').forEach(botao => {
-    botao.addEventListener('click', () => {
-        const card = botao.parentElement;
-        const expandido = botao.getAttribute('aria-expanded') === 'true';
-        
-        botao.setAttribute('aria-expanded', !expandido);
-        card.classList.toggle('ativo');
-    });
-});
+                  menuBtn.onclick=()=>{
+                    menu.classList.toggle('open');
+                      menuBtn.setAttribute('aria-expanded',menu.classList.contains('open'));
+                      };
 
-// === LÓGICA DO QUIZ INTERATIVO ===
-const perguntas = [
-    {
-        pergunta: "Qual é a principal matéria-prima cultivada em Guarapuava para a produção de malte?",
-        opcoes: ["Trigo", "Cevada", "Milho", "Soja"],
-        correta: 1
-    },
-    {
-        pergunta: "O equilíbrio entre produção e meio ambiente foca em qual conceito?",
-        opcoes: ["Expansão predatória", "Sustentabilidade", "Monocultura intensiva", "Desperdício zero"],
-        correta: 1
-    }
-];
+                      accessBtn.onclick=()=>{
+                        const open=accessPanel.hidden;
+                          accessPanel.hidden=!open;
+                            accessBtn.setAttribute('aria-expanded',open);
+                            };
 
-let perguntaAtualIndex = 0;
-let pontuacao = 0;
+                            document.addEventListener('keydown',e=>{
+                              if(e.key==='Escape'){
+                                  menu.classList.remove('open');
+                                      accessPanel.hidden=true;
+                                          menuBtn.setAttribute('aria-expanded','false');
+                                              accessBtn.setAttribute('aria-expanded','false');
+                                                }
+                                                });
 
-const perguntaTexto = document.getElementById('pergunta-texto');
-const opcoesContainer = document.getElementById('opcoes-container');
-const btnProximo = document.getElementById('btn-proximo');
-const resultadoQuiz = document.getElementById('resultado-quiz');
+                                                fontPlus.onclick=()=>{
+                                                  fontSize=Math.min(fontSize+2,24);
+                                                    document.documentElement.style.fontSize=fontSize+'px';
+                                                    };
 
-function carregarPergunta() {
-    limparEstado();
-    let q = perguntas[perguntaAtualIndex];
-    perguntaTexto.innerText = q.pergunta;
+                                                    fontMinus.onclick=()=>{
+                                                      fontSize=Math.max(fontSize-2,12);
+                                                        document.documentElement.style.fontSize=fontSize+'px';
+                                                        };
 
-    q.opcoes.forEach((opcao, index) => {
-        const botao = document.createElement('button');
-        botao.innerText = opacity = opcao;
-        botao.classList.add('btn-opcao');
-        botao.addEventListener('click', () => selecionarResposta(index));
-        opcoesContainer.appendChild(botao);
-    });
-}
+                                                        contrastBtn.onclick=()=>{
+                                                          contrast=!contrast;
+                                                            document.body.classList.toggle('high-contrast',contrast);
+                                                            };
 
-function limparEstado() {
-    btnProximo.classList.add('escondido');
-    while (opcoesContainer.firstChild) {
-        opcoesContainer.removeChild(opcoesContainer.firstChild);
-    }
-}
+                                                            curiosidadeBtn.onclick=()=>{
+                                                              curiosidadeTexto.textContent=curiosidades[Math.floor(Math.random()*curiosidades.length)];
+                                                              };
 
-function selecionarResposta(indexSelecionado) {
-    const correta = perguntas[perguntaAtualIndex].correta;
-    if (indexSelecionado === correta) {
-        pontuacao++;
-    }
-    
-    // Bloquear novos cliques
-    Array.from(opcoesContainer.children).forEach(btn => btn.disabled = true);
-    
-    if (perguntaAtualIndex < perguntas.length - 1) {
-        btnProximo.classList.remove('escondido');
-    } else {
-        exibirResultado();
-    }
-}
+                                                              quiz.forEach((item,i)=>{
+                                                                const el=document.createElement('div');
+                                                                  el.className='card';
+                                                                    el.innerHTML=`<p><strong>${i+1}. ${item.q}</strong></p>${item.opts.map(o=>`<label><input type="radio" name="q${i}" value="${o}"> ${o}</label><br>`).join('')}`;
+                                                                      quizBox.appendChild(el);
+                                                                      });
 
-btnProximo.addEventListener('click', () => {
-    perguntaAtualIndex++;
-    carregarPergunta();
-});
+                                                                      quizBtn.onclick=()=>{
+                                                                        let score=0;
+                                                                          quiz.forEach((item,i)=>{
+                                                                              const selected=document.querySelector(`input[name="q${i}"]:checked`);
+                                                                                  if(selected&&selected.value.toLowerCase()===item.a.toLowerCase())score++;
+                                                                                    });
+                                                                                      quizResultado.textContent=`Você acertou ${score} de ${quiz.length}. ${score===quiz.length?'Excelente!':'Continue explorando o projeto.'}`;
+                                                                                      };
 
-function exibirResultado() {
-    perguntaTexto.classList.add('escondido');
-    opcoesContainer.classList.add('escondido');
-    resultadoQuiz.classList.remove('escondido');
-    resultadoQuiz.innerHTML = `<h3>Quiz Concluído!</h3><p>Você acertou ${pontuacao} de ${perguntas.length} perguntas.</p>`;
-}
+                                                                                      const showSlide=i=>{
+                                                                                        slide=(i+slides.length)%slides.length;
+                                                                                          slideImg.src=slides[slide].src;
+                                                                                            slideCaption.textContent=slides[slide].cap;
+                                                                                            };
 
-// Inicializar o Quiz ao carregar a página
-carregarPergunta();
+                                                                                            prevSlide.onclick=()=>showSlide(slide-1);
+                                                                                            nextSlide.onclick=()=>showSlide(slide+1);
+                                                                                            setInterval(()=>showSlide(slide+1),5000);
+
+                                                                                            document.querySelectorAll('.toggle-card').forEach(card=>card.addEventListener('click',()=>toggleTexto.textContent=card.dataset.text));
+
+                                                                                            showSlide(0);

@@ -1,62 +1,223 @@
-/* Variáveis de Cor - Tema Padrão */
-:root {
-    --bg-principal: #f4f7f4;
-    --bg-card: #ffffff;
-    --texto-principal: #2c3e50;
-    --cor-primaria: #27ae60;
-    --cor-secundaria: #d35400;
-    --tamanho-fonte-base: 16px;
-}
+:root{
+      --bg:#f4f8f2;
+        --text:#1f2a1f;
+          --card:#fff;
+            --accent:#4c8c3a;
+              --accent2:#2f6b3d;
+                --shadow:0 10px 30px rgba(0,0,0,.08);
+                  font-size:16px;
+                  }
 
-/* Classe de Alto Contraste (Ativada via JS) */
-body.alto-contraste {
-    --bg-principal: #000000;
-    --bg-card: #1c1c1c;
-    --texto-principal: #ffffff;
-    --cor-primaria: #ffff00;
-    --cor-secundaria: #00ffff;
-}
+                  *{box-sizing:border-box}
 
-body {
-    background-color: var(--bg-principal);
-    color: var(--texto-principal);
-    font-size: var(--tamanho-fonte-base);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    transition: background 0.3s, color 0.3s;
-}
+                  body{
+                    margin:0;
+                      font-family:Arial,Helvetica,sans-serif;
+                        background:var(--bg);
+                          color:var(--text);
+                            line-height:1.6;
+                            }
 
-/* Exemplo de Responsividade Simples */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background: var(--bg-card);
-}
+                            body.high-contrast{
+                              --bg:#000;
+                                --text:#fff;
+                                  --card:#111;
+                                    --accent:#ff0;
+                                      --accent2:#0ff;
+                                      }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-}
+                                      a{color:inherit}
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Lógica para o menu hamburguer interagir via JS */
-    }
-}
+                                      .skip-link{
+                                        position:absolute;
+                                          left:-999px;
+                                            top:auto;
+                                            }
 
-/* Cards Expansíveis */
-.card-content {
-    display: none;
-    padding: 10px;
-    background-color: var(--bg-principal);
-}
+                                            .skip-link:focus{
+                                              left:1rem;
+                                                top:1rem;
+                                                  background:#fff;
+                                                    padding:.5rem;
+                                                      z-index:10;
+                                                      }
 
-.card.ativo .card-content {
-    display: block;
-}
+                                                      .hero{
+                                                        padding:1rem 5vw 3rem;
+                                                          background:linear-gradient(135deg,#dff0d8,#f8fbf5);
+                                                          }
 
-.escondido {
-    display: none;
-}
+                                                          .navbar{
+                                                            display:flex;
+                                                              align-items:center;
+                                                                justify-content:space-between;
+                                                                  gap:1rem;
+                                                                  }
+
+                                                                  .brand{
+                                                                    display:flex;
+                                                                      align-items:center;
+                                                                        gap:.75rem;
+                                                                          font-weight:700;
+                                                                          }
+
+                                                                          .logo{
+                                                                            width:44px;
+                                                                              height:44px;
+                                                                                object-fit:contain;
+                                                                                }
+
+                                                                                .menu{
+                                                                                  display:flex;
+                                                                                    list-style:none;
+                                                                                      gap:1rem;
+                                                                                        padding:0;
+                                                                                          margin:0;
+                                                                                          }
+
+                                                                                          .menu a{
+                                                                                            text-decoration:none;
+                                                                                              font-weight:600;
+                                                                                              }
+
+                                                                                              .menu-btn,.access-btn,.btn,.toggle-card,.carousel button{
+                                                                                                border:none;
+                                                                                                  border-radius:12px;
+                                                                                                    cursor:pointer;
+                                                                                                    }
+
+                                                                                                    .menu-btn,.access-btn{
+                                                                                                      background:var(--card);
+                                                                                                        padding:.6rem .8rem;
+                                                                                                          box-shadow:var(--shadow);
+                                                                                                          }
+
+                                                                                                          .hero-content{
+                                                                                                            display:grid;
+                                                                                                              grid-template-columns:1fr 1fr;
+                                                                                                                align-items:center;
+                                                                                                                  gap:2rem;
+                                                                                                                    max-width:1100px;
+                                                                                                                      margin:2rem auto 0;
+                                                                                                                      }
+
+                                                                                                                      .hero-img,.card img,#slideImg{
+                                                                                                                        width:100%;
+                                                                                                                          border-radius:18px;
+                                                                                                                            box-shadow:var(--shadow);
+                                                                                                                              object-fit:cover;
+                                                                                                                              }
+
+                                                                                                                              .hero h1{
+                                                                                                                                font-size:clamp(2rem,5vw,4rem);
+                                                                                                                                  margin:.2rem 0;
+                                                                                                                                  }
+
+                                                                                                                                  .hero-actions{
+                                                                                                                                    display:flex;
+                                                                                                                                      gap:.75rem;
+                                                                                                                                        flex-wrap:wrap;
+                                                                                                                                        }
+
+                                                                                                                                        .btn{
+                                                                                                                                          display:inline-block;
+                                                                                                                                            background:var(--accent);
+                                                                                                                                              color:#fff;
+                                                                                                                                                padding:.8rem 1.1rem;
+                                                                                                                                                  text-decoration:none;
+                                                                                                                                                  }
+
+                                                                                                                                                  .btn.secondary{
+                                                                                                                                                    background:var(--accent2);
+                                                                                                                                                    }
+
+                                                                                                                                                    .section{
+                                                                                                                                                      max-width:1100px;
+                                                                                                                                                        margin:0 auto;
+                                                                                                                                                          padding:3rem 5vw;
+                                                                                                                                                          }
+
+                                                                                                                                                          .grid-3{
+                                                                                                                                                            display:grid;
+                                                                                                                                                              grid-template-columns:repeat(3,1fr);
+                                                                                                                                                                gap:1rem;
+                                                                                                                                                                }
+
+                                                                                                                                                                .card{
+                                                                                                                                                                  background:var(--card);
+                                                                                                                                                                    padding:1rem;
+                                                                                                                                                                      border-radius:18px;
+                                                                                                                                                                        box-shadow:var(--shadow);
+                                                                                                                                                                        }
+
+                                                                                                                                                                        .card img{
+                                                                                                                                                                          height:220px;
+                                                                                                                                                                          }
+
+                                                                                                                                                                          .carousel{
+                                                                                                                                                                            display:grid;
+                                                                                                                                                                              grid-template-columns:auto 1fr auto;
+                                                                                                                                                                                align-items:center;
+                                                                                                                                                                                  gap:.75rem;
+                                                                                                                                                                                  }
+
+                                                                                                                                                                                  .carousel button{
+                                                                                                                                                                                    background:var(--accent);
+                                                                                                                                                                                      color:#fff;
+                                                                                                                                                                                        width:44px;
+                                                                                                                                                                                          height:44px;
+                                                                                                                                                                                            font-size:1.5rem;
+                                                                                                                                                                                            }
+
+                                                                                                                                                                                            .carousel img{
+                                                                                                                                                                                              height:320px;
+                                                                                                                                                                                              }
+
+                                                                                                                                                                                              .access-panel{
+                                                                                                                                                                                                display:flex;
+                                                                                                                                                                                                  gap:.5rem;
+                                                                                                                                                                                                    flex-wrap:wrap;
+                                                                                                                                                                                                      margin-top:1rem;
+                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                      .access-panel button{
+                                                                                                                                                                                                        padding:.6rem .9rem;
+                                                                                                                                                                                                          border:1px solid #ccc;
+                                                                                                                                                                                                            background:var(--card);
+                                                                                                                                                                                                              border-radius:10px;
+                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                              .footer{
+                                                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                                                  padding:2rem 5vw;
+                                                                                                                                                                                                                    background:#e8f2e2;
+                                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                                    .menu.open{display:flex}
+
+                                                                                                                                                                                                                    .toggle-card{
+                                                                                                                                                                                                                      text-align:left;
+                                                                                                                                                                                                                        width:100%;
+                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                        @media (max-width:900px){
+                                                                                                                                                                                                                          .hero-content,.grid-3{
+                                                                                                                                                                                                                              grid-template-columns:1fr;
+                                                                                                                                                                                                                                }
+
+                                                                                                                                                                                                                                  .menu{
+                                                                                                                                                                                                                                      display:none;
+                                                                                                                                                                                                                                          flex-direction:column;
+                                                                                                                                                                                                                                              background:var(--card);
+                                                                                                                                                                                                                                                  position:absolute;
+                                                                                                                                                                                                                                                      right:5vw;
+                                                                                                                                                                                                                                                          top:72px;
+                                                                                                                                                                                                                                                              padding:1rem;
+                                                                                                                                                                                                                                                                  border-radius:16px;
+                                                                                                                                                                                                                                                                      box-shadow:var(--shadow);
+                                                                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                                                                          .navbar{position:relative}
+
+                                                                                                                                                                                                                                                                            .menu.open{display:flex}
+                                                                                                                                                                                                                                                                            }
